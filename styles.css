@@ -1,0 +1,793 @@
+/* Theme Color Palettes */
+:root {
+    /* Light Theme Colors */
+    --light-bg: #ffffff;
+    --light-text: #2d3748;
+    --light-primary: #3b82f6;
+    --light-secondary: #10b981;
+    --light-accent: #8b5cf6;
+    --light-border: #e2e8f0;
+    --light-surface: #f8fafc;
+    --light-editor: #f1f5f9;
+    --light-code: #2d3748;
+    --light-demo: #ffffff;
+    --light-nav: #f1f5f9;
+    --light-success: #059669;
+    --light-error: #dc2626;
+    --light-warning: #d97706;
+    
+    /* Dark Theme Colors */
+    --dark-bg: #0f172a;
+    --dark-text: #e2e8f0;
+    --dark-primary: #60a5fa;
+    --dark-secondary: #34d399;
+    --dark-accent: #a78bfa;
+    --dark-border: #334155;
+    --dark-surface: #1e293b;
+    --dark-editor: #0f172a;
+    --dark-code: #94a3b8;
+    --dark-demo: #1e293b;
+    --dark-nav: #0f172a;
+    --dark-success: #34d399;
+    --dark-error: #f87171;
+    --dark-warning: #fbbf24;
+
+    /* Default Theme (Light) */
+    --bg-color: var(--light-bg);
+    --text-color: var(--light-text);
+    --primary-color: var(--light-primary);
+    --secondary-color: var(--light-secondary);
+    --accent-color: var(--light-accent);
+    --border-color: var(--light-border);
+    --surface-color: var(--light-surface);
+    --editor-bg: var(--light-editor);
+    --code-color: var(--light-code);
+    --demo-bg: var(--light-demo);
+    --nav-bg: var(--light-nav);
+}
+
+/* Dark Theme Override */
+[data-theme="dark"] {
+    --bg-color: var(--dark-bg);
+    --text-color: var(--dark-text);
+    --primary-color: var(--dark-primary);
+    --secondary-color: var(--dark-secondary);
+    --accent-color: var(--dark-accent);
+    --border-color: var(--dark-border);
+    --surface-color: var(--dark-surface);
+    --editor-bg: var(--dark-editor);
+    --code-color: var(--dark-code);
+    --demo-bg: var(--dark-demo);
+    --nav-bg: var(--dark-nav);
+}
+
+/* Global Styles */
+body {
+    background-color: var(--theme-bg-primary);
+    color: var(--theme-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Transition */
+body * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Navigation Enhancement */
+.demo-nav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--theme-transition);
+}
+
+.demo-nav a {
+    color: var(--primary-color);
+    transition: var(--theme-transition);
+}
+
+.demo-nav a:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Theme switch */
+.theme-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.toggleWrapper {
+    position: relative;
+    transform: scale(0.7);
+}
+
+.input {
+    position: absolute;
+    left: -99em;
+}
+
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 90px;
+    height: 50px;
+    background-color: var(--theme-light-bg, #83d8ff);
+    border-radius: 84px;
+    transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.toggle__handler {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    top: 3px;
+    left: 3px;
+    width: 44px;
+    height: 44px;
+    background-color: var(--theme-sun, #ffcf96);
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: rotate(-45deg);
+}
+
+/* Craters & Stars */
+.crater {
+    position: absolute;
+    background-color: #e8cda5;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    border-radius: 100%;
+}
+
+.crater--1 { top: 18px; left: 10px; width: 4px; height: 4px; }
+.crater--2 { top: 28px; left: 22px; width: 6px; height: 6px; }
+.crater--3 { top: 10px; left: 25px; width: 8px; height: 8px; }
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    border-radius: 50%;
+}
+
+.star--1, .star--2, .star--3 {
+    width: 30px;
+    height: 3px;
+}
+.star--1 { top: 10px; left: 35px; }
+.star--2 { top: 18px; left: 28px; }
+.star--3 { top: 27px; left: 40px; }
+
+.star--4, .star--5, .star--6 {
+    opacity: 0;
+    width: 2px;
+    height: 2px;
+    transform: translate3d(3px, 0, 0);
+}
+
+.input:checked + .toggle {
+    background-color: var(--theme-dark-bg, #749dd6);
+}
+
+.input:checked + .toggle .toggle__handler {
+    background-color: #ffe5b5;
+    transform: translate3d(40px, 0, 0) rotate(0);
+}
+
+.input:checked + .toggle .crater { opacity: 1; }
+.input:checked + .toggle .star--1 { width: 2px; height: 2px; }
+.input:checked + .toggle .star--2 { width: 4px; height: 4px; transform: translate3d(-5px, 0, 0); }
+.input:checked + .toggle .star--3 { width: 2px; height: 2px; transform: translate3d(-7px, 0, 0); }
+
+.input:checked + .toggle .star--4,
+.input:checked + .toggle .star--5,
+.input:checked + .toggle .star--6 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Sequential star animations */
+.input:checked + .toggle .star--4 { transition-delay: 200ms; }
+.input:checked + .toggle .star--5 { transition-delay: 300ms; }
+.input:checked + .toggle .star--6 { transition-delay: 400ms; }
+
+/* Editor Enhancement */
+.editors {
+    background: var(--editor-bg);
+    color: var(--theme-editor-text);
+    border: 1px solid var(--border-color);
+    transition: var(--theme-transition);
+}
+
+textarea {
+    background: var(--code-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition: var(--theme-transition);
+}
+
+/* Demo Area */
+.demo {
+    background: var(--theme-demo-bg);
+    border: 1px solid var(--theme-demo-border);
+    box-shadow: 0 4px 6px var(--theme-shadow);
+}
+
+/* Button Enhancement */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.secondary-btn {
+    background: var(--control-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Theme Switch Enhancement */
+.theme-switch button {
+    background: var(--surface-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transform-origin: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-switch button:hover {
+    transform: rotate(180deg);
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Navigation styles */
+.demo-nav {
+    background: var(--primary-color);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.demo-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.demo-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.demo-nav a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Main container for all sections */
+.sections-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 600px), 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Section Layout */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    min-height: 600px;
+    margin-bottom: 1rem;
+    container-type: inline-size;
+    container-name: demo-section;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+/* Container Queries for Demo Sections */
+@container demo-section (min-width: 400px) {
+    .masked-element {
+        font-size: calc(1rem + 2cqi);
+    }
+}
+
+/* Editor Layout */
+.editors {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--editor-bg, #f8f9fa);
+    border-radius: 8px;
+    position: relative;
+}
+
+.editor-column {
+    position: relative;
+}
+
+.editor-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: var(--header-bg, #e9ecef);
+    border-radius: 4px;
+}
+
+.editor-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0.75rem;
+    tab-size: 2;
+}
+
+/* Demo Area Improvements */
+.demo {
+    flex: 1;
+    min-height: 200px;
+    max-height: 300px;
+    padding: 2rem;
+    border-radius: 8px;
+    background: var(--demo-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-20px);
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(0);
+}
+
+.demo:hover {
+    backdrop-filter: blur(4px);
+}
+
+.demo.active {
+    height: auto;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Demo controls */
+.demo-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--control-bg);
+    border-radius: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.demo-controls:hover {
+    opacity: 1;
+}
+
+/* Button Styles */
+.primary-btn, .secondary-btn {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+}
+
+.secondary-btn {
+    background: var(--control-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.primary-btn:active, .secondary-btn:active {
+    transform: translateY(1px);
+}
+
+/* Button ripple effect */
+.primary-btn::after, .secondary-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.primary-btn:active::after, .secondary-btn:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+}
+
+/* Button Alignment */
+button {
+    margin: 1rem auto;
+    min-width: 120px;
+}
+
+/* Resize handle */
+.resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    cursor: ew-resize;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.handle-icon {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+/* Copy button animation */
+.copy-code {
+    position: relative;
+}
+
+.copy-code.copied::after {
+    content: "Copied!";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Demo Result Container */
+.demo {
+    position: relative;
+    min-height: 200px;
+    background: var(--demo-bg, #ffffff);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.demo iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+}
+
+/* Demo States */
+.demo.loading {
+    position: relative;
+}
+
+.demo.loading::after {
+    content: 'Loading...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.demo.error {
+    background: var(--error-bg, #ffebee);
+    color: var(--error-color, #c62828);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Demo Container Utilities */
+.demo-wrapper {
+    position: relative;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.demo-resize-handle {
+    position: absolute;
+    right: -8px;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    cursor: ew-resize;
+    background: transparent;
+}
+
+.demo-resize-handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 24px;
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+/* Textarea Improvements */
+textarea {
+    width: 100%;
+    min-height: 200px;
+    line-height: 1.5;
+    tab-size: 2;
+}
+
+/* Code Display Alignment */
+pre {
+    margin: 0;
+    border-radius: 4px;
+}
+
+code {
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Button Alignment */
+button {
+    margin: 1rem auto;
+    min-width: 120px;
+}
+
+/* Container Query Demo Specific */
+#container .demo {
+    resize: horizontal;
+    overflow: auto;
+    min-width: 200px;
+    max-width: 100%;
+}
+
+/* Spacing Utilities */
+.mb-1 { margin-bottom: 1rem; }
+.mt-1 { margin-top: 1rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .section {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .editors {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-controls {
+        flex-wrap: wrap;
+    }
+
+    .primary-btn, .secondary-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .demo-controls {
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sections-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .section {
+        min-height: auto;
+    }
+}
+
+/* Scrollbar styling */
+.editors::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editors::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+.editors::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Demo Section Layout */
+.section {
+    margin-bottom: 1rem;
+}
+
+.demo {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-20px);
+    margin: 0;
+    padding: 0;
+}
+
+.demo.active {
+    height: auto;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.demo-controls {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.demo-controls:hover {
+    opacity: 1;
+}
+
+/* Editor Transitions */
+.editors {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    max-height: 300px;
+    overflow: auto;
+}
+
+/* Compact Mode */
+.section:not(:hover) .editors {
+    max-height: 200px;
+}
+
+/* Smooth scrollbar */
+.editors::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editors::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 4px;
+}
+
+.editors::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* View Animation Fixes */
+#view {
+    min-height: 100vh;
+    scroll-margin-top: 2rem;
+}
+
+.view-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.view-animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll Animation Fixes */
+#scroll {
+    scroll-margin-top: 2rem;
+    overflow: hidden;
+}
+
+/* Section Header Consistency */
+.section-header {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Demo Container Fixes */
+.demo {
+    position: relative;
+    min-height: 200px;
+    background: var(--demo-bg);
+}
+
+/* Section ID Fixes */
+[id] {
+    scroll-margin-top: 80px;
+}
+
+/* New Demo-specific Styles */
+#masking .demo {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--demo-bg),
+        var(--demo-bg) 10px,
+        var(--border-color) 10px,
+        var(--border-color) 20px
+    );
+}

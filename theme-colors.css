@@ -1,0 +1,45 @@
+/* Light Theme Colors */
+[data-theme="light"] {
+    --theme-bg-primary: #ffffff;
+    --theme-bg-secondary: #f8fafc;
+    --theme-text-primary: #334155;
+    --theme-text-secondary: #64748b;
+    --theme-accent-primary: #3b82f6;
+    --theme-accent-secondary: #10b981;
+    --theme-border: #e2e8f0;
+    --theme-surface: #f1f5f9;
+    --theme-code-bg: #334155;
+    --theme-code-text: #e2e8f0;
+    --theme-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Component Colors */
+    --theme-editor-bg: #f8fafc;
+    --theme-editor-text: #334155;
+    --theme-demo-bg: #ffffff;
+    --theme-demo-border: #e2e8f0;
+    --theme-button-primary: #3b82f6;
+    --theme-button-secondary: #64748b;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+    --theme-bg-primary: #0f172a;
+    --theme-bg-secondary: #1e293b;
+    --theme-text-primary: #e2e8f0;
+    --theme-text-secondary: #94a3b8;
+    --theme-accent-primary: #60a5fa;
+    --theme-accent-secondary: #34d399;
+    --theme-border: #334155;
+    --theme-surface: #1e293b;
+    --theme-code-bg: #0f172a;
+    --theme-code-text: #e2e8f0;
+    --theme-shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Component Colors */
+    --theme-editor-bg: #1e293b;
+    --theme-editor-text: #e2e8f0;
+    --theme-demo-bg: #0f172a;
+    --theme-demo-border: #334155;
+    --theme-button-primary: #60a5fa;
+    --theme-button-secondary: #94a3b8;
+}

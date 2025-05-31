@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced CSS Features Interactive Showcase</title>
+    <link rel="stylesheet" href="theme-colors.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+</head>
+<body>
+    <div class="theme-switch">
+        <div class="toggleWrapper">
+            <input class="input" type="checkbox" id="themeToggle" />
+            <label class="toggle" for="themeToggle">
+                <span class="toggle__handler">
+                    <span class="crater crater--1"></span>
+                    <span class="crater crater--2"></span>
+                    <span class="crater crater--3"></span>
+                </span>
+                <span class="star star--1"></span>
+                <span class="star star--2"></span>
+                <span class="star star--3"></span>
+                <span class="star star--4"></span>
+                <span class="star star--5"></span>
+                <span class="star star--6"></span>
+            </label>
+        </div>
+    </div>
+
+    <h1 class="text-center">🚀 Interactive CSS Features for Students</h1>
+    <p class="text-center">Created by ANWAR</p>
+    
+    <!-- Navigation menu -->
+    <nav class="demo-nav">
+        <ul>
+            <li><a href="#clip-path">Clip-path</a></li>
+            <li><a href="#custom-props">Custom Properties</a></li>
+            <li><a href="#has-selector">:has()</a></li>
+            <li><a href="#container">Container Queries</a></li>
+            <li><a href="#scroll">Scroll Animation</a></li>
+            <li><a href="#view">View Animation</a></li>
+            <li><a href="#grid">Grid Layout</a></li>
+            <li><a href="#flexbox">Flexbox Layout</a></li>
+            <li><a href="#advanced-selectors">Advanced Selectors</a></li>
+            <li><a href="#scroll-snap">Scroll Snap</a></li>
+            <li><a href="#transforms">3D Transforms</a></li>
+            <li><a href="#variables">CSS Variables</a></li>
+            <li><a href="#masking">CSS Masking</a></li>
+            <li><a href="#subgrid">Subgrid</a></li>
+            <li><a href="#gradients">Advanced Gradients</a></li>
+            <li><a href="#scroll-driven">Scroll Animations</a></li>
+        </ul>
+    </nav>
+
+    <div class="sections-container">
+        <!-- First row -->
+        <!-- Clip-path Shapes -->
+        <div class="section" id="clip-path">
+            <header class="section-header">
+                <h2 class="text-center">1. Clip-path Shapes</h2>
+                <p class="text-center mx-auto">Use <code>clip-path</code> to create complex shapes.</p>
+            </header>
+            <div class="editors">
+                <div>
+                  <h4>HTML</h4>
+                  <textarea id="html1">&lt;div class="clip-shape"&gt;&lt;/div&gt;</textarea>
+                </div>
+                <div>
+                  <h4>CSS</h4>
+                  <textarea id="css1">.clip-shape {
+  width: 150px;
+  height: 150px;
+  background: #ff6f61;
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo1', 'html1', 'css1')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo1"></div>
+        </div>
+
+        <!-- Custom Property & Animation -->
+        <div class="section" id="custom-props">
+            <header class="section-header">
+                <h2 class="text-center">2. Custom Properties & Animations (@property)</h2>
+                <p class="text-center mx-auto">Hover the button to see it rotate using <code>@property</code>.</p>
+            </header>
+            <div class="editors">
+                <div>
+                  <h4>HTML</h4>
+                  <textarea id="html2">&lt;button class="rotate-btn"&gt;Hover me&lt;/button&gt;</textarea>
+                </div>
+                <div>
+                  <h4>CSS</h4>
+                  <textarea id="css2">@property --rotation {
+  syntax: &lt;angle&gt;;
+  inherits: false;
+  initial-value: 0deg;
+}
+.rotate-btn {
+  --rotation: 0deg;
+  background: #2196F3;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.8s ease-in-out;
+  transform: rotate(var(--rotation));
+}
+.rotate-btn:hover {
+  --rotation: 15deg;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo2', 'html2', 'css2')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo2"></div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- Second row -->
+        <!-- :has() pseudo-class -->
+        <div class="section" id="has-selector">
+            <header class="section-header">
+                <h2 class="text-center">3. The :has() Pseudo-class</h2>
+                <p class="text-center mx-auto">Styles parent when it contains an image.</p>
+            </header>
+            <div class="editors">
+                <div>
+                  <h4>HTML</h4>
+                  <textarea id="html3">&lt;div class="has-parent"&gt;
+  &lt;img src="https://via.placeholder.com/100" alt="Placeholder" /&gt;
+  &lt;p&gt;This parent contains an image&lt;/p&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div>
+                  <h4>CSS</h4>
+                  <textarea id="css3">.has-parent {
+  padding: 1rem;
+  background: #e0f7fa;
+}
+.has-parent:has(img) {
+  border: 3px solid #00796b;
+  padding: 0.5rem;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo3', 'html3', 'css3')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo3"></div>
+        </div>
+
+        <!-- Container Queries -->
+        <div class="section" id="container">
+            <header class="section-header">
+                <h2 class="text-center">4. Container Queries</h2>
+                <p class="text-center mx-auto">Resize the container to see the box adapt.</p>
+            </header>
+            <div class="editors">
+                <div>
+                  <h4>HTML</h4>
+                  <textarea id="html4">&lt;div class="container"&gt;
+  &lt;div class="responsive-box"&gt;Resize me!&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div>
+                  <h4>CSS</h4>
+                  <textarea id="css4">.container {
+  container-type: inline-size;
+  border: 2px dashed #999;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.responsive-box {
+  background: lightcoral;
+  padding: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  transition: font-size 0.3s;
+}
+@container (min-width: 500px) {
+  .responsive-box {
+    font-size: 1.5rem;
+    background: lightblue;
+  }
+}</textarea>
+                </div>
+              </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo4', 'html4', 'css4')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo4">
+                <div class="resize-handle">
+                    <div class="handle-icon">⟺</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- Third row -->
+        <!-- Scroll Timeline Animation -->
+        <div class="section" id="scroll">
+            <header class="section-header">
+                <h2 class="text-center">5. Scroll Timeline Animation</h2>
+                <p class="text-center mx-auto">Scroll down to see the element fade in.</p>
+            </header>
+            <div class="editors">
+            <div>
+              <h4>HTML</h4>
+              <textarea id="html5">&lt;div class="scroll-fade"&gt;Scroll to Fade In&lt;/div&gt;</textarea>
+            </div>
+            <div>
+              <h4>CSS</h4>
+              <textarea id="css5">@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@scroll-timeline fadeScroll {
+  source: auto;
+  orientation: block;
+}
+.scroll-fade {
+  opacity: 0;
+  background: #ffe082;
+  padding: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s forwards;
+  animation-timeline: fadeScroll;
+}</textarea>
+            </div>
+          </div>
+          <div class="demo-controls">
+                <button onclick="updateDemo('demo5', 'html5', 'css5')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo5"></div>
+        </div>
+
+        <!-- View Timeline Animation -->
+        <div class="section" id="view">
+            <header class="section-header">
+                <h2 class="text-center">6. View Timeline Animation</h2>
+                <p class="text-center mx-auto">Scroll to reveal the animated box.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>HTML</h4>
+                    </div>
+                    <textarea id="html6">&lt;div class="view-animate"&gt;I animate on view&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>CSS</h4>
+                    </div>
+                    <textarea id="css6">.view-animate {
+  opacity: 0;
+  background: #aed581;
+  padding: 2rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  transition: opacity 0.5s;
+}
+.view-animate.in-view {
+  opacity: 1;
+  animation: fadeInView 1s forwards;
+}</textarea>
+                </div>
+            </div>
+          <div class="demo-controls">
+                <button onclick="updateDemo('demo6', 'html6', 'css6')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo6"></div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- Grid Layout Demo -->
+        <div class="section" id="grid">
+            <header class="section-header">
+                <h2 class="text-center">7. CSS Grid Layout</h2>
+                <p class="text-center mx-auto">Interactive grid layout with area templates.</p>
+            </header>
+            <div class="editors">
+                <div>
+                    <h4>HTML</h4>
+                    <textarea id="html7">&lt;div class="grid-container"&gt;
+  &lt;header&gt;Header&lt;/header&gt;
+  &lt;nav&gt;Navigation&lt;/nav&gt;
+  &lt;main&gt;Main Content&lt;/main&gt;
+  &lt;aside&gt;Sidebar&lt;/aside&gt;
+  &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div>
+                    <h4>CSS</h4>
+                    <textarea id="css7">.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "nav aside"
+    "footer footer";
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+  min-height: 300px;
+}
+.grid-container > * {
+  padding: 1rem;
+  background: #90caf9;
+  border-radius: 4px;
+  text-align: center;
+}
+header { grid-area: header; background: #42a5f5; }
+nav { grid-area: nav; background: #64b5f6; }
+main { grid-area: main; background: #90caf9; }
+aside { grid-area: aside; background: #bbdefb; }
+footer { grid-area: footer; background: #42a5f5; }</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo7', 'html7', 'css7')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo7"></div>
+        </div>
+
+        <!-- CSS Flexbox Demo -->
+        <div class="section" id="flexbox">
+            <header class="section-header">
+                <h2 class="text-center">8. CSS Flexbox Layout</h2>
+                <p class="text-center mx-auto">Flexible box layout with dynamic sizing and alignment.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>HTML</h4>
+                    </div>
+                    <textarea id="html8">&lt;div class="flex-container"&gt;
+  &lt;div class="flex-item"&gt;1&lt;/div&gt;
+  &lt;div class="flex-item grow"&gt;2&lt;/div&gt;
+  &lt;div class="flex-item"&gt;3&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>CSS</h4>
+                    </div>
+                    <textarea id="css8">.flex-container {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f0f4f8;
+  border-radius: 8px;
+}
+
+.flex-item {
+  padding: 2rem;
+  background: #2196F3;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.grow {
+  flex-grow: 1;
+  background: #1976D2;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo8', 'html8', 'css8')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo8"></div>
+        </div>
+
+        <!-- Advanced Selectors Demo -->
+        <div class="section" id="advanced-selectors">
+            <header class="section-header">
+                <h2 class="text-center">9. Advanced CSS Selectors</h2>
+                <p class="text-center mx-auto">Complex selectors and combinators.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>HTML</h4>
+                    </div>
+                    <textarea id="html9">&lt;div class="selector-demo"&gt;
+  &lt;article&gt;
+    &lt;h3&gt;First Article&lt;/h3&gt;
+    &lt;p&gt;First paragraph&lt;/p&gt;
+    &lt;p&gt;Second paragraph&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;article&gt;
+    &lt;h3&gt;Second Article&lt;/h3&gt;
+    &lt;p&gt;Another paragraph&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>CSS</h4>
+                    </div>
+                    <textarea id="css9">.selector-demo {
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+/* First child */
+article:first-child h3 {
+  color: #1976D2;
+}
+
+/* Adjacent sibling */
+h3 + p {
+  font-weight: bold;
+  color: #2196F3;
+}
+
+/* Nth child */
+article:nth-child(2) p {
+  background: #BBDEFB;
+  padding: 0.5rem;
+}
+
+/* Not selector */
+p:not(:first-of-type) {
+  border-left: 3px solid #64B5F6;
+  padding-left: 1rem;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo9', 'html9', 'css9')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo9"></div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- Scroll Snap Demo -->
+        <div class="section" id="scroll-snap">
+            <header class="section-header">
+                <h2 class="text-center">10. CSS Scroll Snap</h2>
+                <p class="text-center mx-auto">Smooth scrolling with snap points.</p>
+            </header>
+            <div class="editors">
+                <div>
+                    <h4>HTML</h4>
+                    <textarea id="html10">&lt;div class="snap-container"&gt;
+  &lt;div class="snap-item"&gt;Slide 1&lt;/div&gt;
+  &lt;div class="snap-item"&gt;Slide 2&lt;/div&gt;
+  &lt;div class="snap-item"&gt;Slide 3&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div>
+                    <h4>CSS</h4>
+                    <textarea id="css10">.snap-container {
+  scroll-snap-type: x mandatory;
+  display: flex;
+  overflow-x: auto;
+  width: 300px;
+  height: 200px;
+}
+.snap-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #2196F3, #64B5F6);
+  color: white;
+  font-size: 1.5rem;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo10', 'html10', 'css10')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo10"></div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- CSS 3D Transforms -->
+        <div class="section" id="transforms">
+            <header class="section-header">
+                <h2 class="text-center">11. CSS 3D Transforms</h2>
+                <p class="text-center mx-auto">Interactive 3D transformations with perspective.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>HTML</h4>
+                    </div>
+                    <textarea id="html11">&lt;div class="scene"&gt;
+  &lt;div class="cube"&gt;
+    &lt;div class="cube__face cube__face--front"&gt;front&lt;/div&gt;
+    &lt;div class="cube__face cube__face--back"&gt;back&lt;/div&gt;
+    &lt;div class="cube__face cube__face--right"&gt;right&lt;/div&gt;
+    &lt;div class="cube__face cube__face--left"&gt;left&lt;/div&gt;
+    &lt;div class="cube__face cube__face--top"&gt;top&lt;/div&gt;
+    &lt;div class="cube__face cube__face--bottom"&gt;bottom&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>CSS</h4>
+                    </div>
+                    <textarea id="css11">.scene {
+  perspective: 600px;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 5s infinite linear;
+}
+
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #fff;
+  line-height: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.cube__face--front  { background: hsla(0, 100%, 50%, 0.7); transform: rotateY(0deg) translateZ(100px); }
+.cube__face--right  { background: hsla(60, 100%, 50%, 0.7); transform: rotateY(90deg) translateZ(100px); }
+.cube__face--back   { background: hsla(120, 100%, 50%, 0.7); transform: rotateY(180deg) translateZ(100px); }
+.cube__face--left   { background: hsla(180, 100%, 50%, 0.7); transform: rotateY(-90deg) translateZ(100px); }
+.cube__face--top    { background: hsla(240, 100%, 50%, 0.7); transform: rotateX(90deg) translateZ(100px); }
+.cube__face--bottom { background: hsla(300, 100%, 50%, 0.7); transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes rotate {
+  from { transform: rotateX(-20deg) rotateY(0); }
+  to { transform: rotateX(-20deg) rotateY(360deg); }
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo11', 'html11', 'css11')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo11"></div>
+        </div>
+
+        <!-- CSS Variables and Theming -->
+        <div class="section" id="variables">
+            <header class="section-header">
+                <h2 class="text-center">12. CSS Variables & Theming</h2>
+                <p class="text-center mx-auto">Dynamic theming with CSS custom properties.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>HTML</h4>
+                    </div>
+                    <textarea id="html12">&lt;div class="theme-container"&gt;
+  &lt;div class="theme-card"&gt;
+    &lt;h3&gt;Dynamic Theme&lt;/h3&gt;
+    &lt;p&gt;Change colors dynamically&lt;/p&gt;
+    &lt;button class="theme-btn"&gt;Click Me&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="theme-controls"&gt;
+    &lt;button onclick="this.parentElement.parentElement.className='theme-container theme-1'"&gt;Theme 1&lt;/button&gt;
+    &lt;button onclick="this.parentElement.parentElement.className='theme-container theme-2'"&gt;Theme 2&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header">
+                        <h4>CSS</h4>
+                    </div>
+                    <textarea id="css12">.theme-container {
+  --primary: #2196F3;
+  --secondary: #1976D2;
+  --text: #ffffff;
+  --bg: #f5f5f5;
+  padding: 2rem;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.theme-1 {
+  --primary: #ff4081;
+  --secondary: #f50057;
+  --text: #ffffff;
+  --bg: #fce4ec;
+}
+
+.theme-2 {
+  --primary: #4caf50;
+  --secondary: #388e3c;
+  --text: #ffffff;
+  --bg: #e8f5e9;
+}
+
+.theme-card {
+  background: var(--primary);
+  color: var(--text);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.theme-btn {
+  background: var(--secondary);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.05);
+}
+
+.theme-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo12', 'html12', 'css12')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo12"></div>
+        </div>
+    </div>
+
+    <div class="sections-container">
+        <!-- CSS Masking & Blend Modes -->
+        <div class="section" id="masking">
+            <header class="section-header">
+                <h2 class="text-center">13. CSS Masking & Blend Modes</h2>
+                <p class="text-center mx-auto">Create complex visual effects with masks and blending.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header"><h4>HTML</h4></div>
+                    <textarea id="html13">&lt;div class="mask-container"&gt;
+  &lt;div class="masked-element"&gt;Masked Content&lt;/div&gt;
+  &lt;div class="blend-element"&gt;Blended Layer&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header"><h4>CSS</h4></div>
+                    <textarea id="css13">.mask-container {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+
+.masked-element {
+  width: 100%;
+  height: 100%;
+  background: #2c3e50;
+  -webkit-mask-image: linear-gradient(to right, 
+    transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, 
+    transparent, black 20%, black 80%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.blend-element {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, 
+    #f7d794 0%, transparent 70%);
+  mix-blend-mode: overlay;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo13', 'html13', 'css13')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo13"></div>
+        </div>
+
+        <!-- CSS Subgrid -->
+        <div class="section" id="subgrid">
+            <header class="section-header">
+                <h2 class="text-center">14. CSS Subgrid</h2>
+                <p class="text-center mx-auto">Nested grid layouts with subgrid.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header"><h4>HTML</h4></div>
+                    <textarea id="html14">&lt;div class="subgrid-container"&gt;
+  &lt;div class="subgrid-item"&gt;
+    &lt;div class="subgrid-header"&gt;Header&lt;/div&gt;
+    &lt;div class="subgrid-content"&gt;
+      &lt;div class="subgrid-box"&gt;1&lt;/div&gt;
+      &lt;div class="subgrid-box"&gt;2&lt;/div&gt;
+      &lt;div class="subgrid-box"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header"><h4>CSS</h4></div>
+                    <textarea id="css14">.subgrid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.subgrid-item {
+  background: #e8f5e9;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.subgrid-header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.subgrid-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.subgrid-box {
+  background: #4caf50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 4px;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo14', 'html14', 'css14')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo14"></div>
+        </div>
+
+        <!-- CSS Custom Painting with Gradients -->
+        <div class="section" id="gradients">
+            <header class="section-header">
+                <h2 class="text-center">15. CSS Custom Painting with Gradients</h2>
+                <p class="text-center mx-auto">Advanced gradient techniques for custom designs.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header"><h4>HTML</h4></div>
+                    <textarea id="html15">&lt;div class="gradient-paint"&gt;
+  &lt;div class="paint-box"&gt;Custom Paint&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header"><h4>CSS</h4></div>
+                    <textarea id="css15">.gradient-paint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background: linear-gradient(135deg, #f3ec78, #af4261);
+}
+
+.paint-box {
+  width: 100px;
+  height: 100px;
+  background: conic-gradient(#f3ec78, #af4261, #f3ec78);
+  border-radius: 50%;
+  position: relative;
+}
+
+.paint-box:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: inherit;
+  filter: blur(20px);
+  border-radius: 50%;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo15', 'html15', 'css15')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo15"></div>
+        </div>
+
+        <!-- CSS Scroll-driven Animations -->
+        <div class="section" id="scroll-driven">
+            <header class="section-header">
+                <h2 class="text-center">16. CSS Scroll-driven Animations</h2>
+                <p class="text-center mx-auto">Animate elements based on scroll position.</p>
+            </header>
+            <div class="editors compact">
+                <div class="editor-column">
+                    <div class="editor-header"><h4>HTML</h4></div>
+                    <textarea id="html16">&lt;div class="scroll-animation"&gt;
+  &lt;div class="animate-on-scroll"&gt;Scroll to Animate&lt;/div&gt;
+&lt;/div&gt;</textarea>
+                </div>
+                <div class="editor-column">
+                    <div class="editor-header"><h4>CSS</h4></div>
+                    <textarea id="css16">@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animation {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+  will-change: opacity, transform;
+}</textarea>
+                </div>
+            </div>
+            <div class="demo-controls">
+                <button onclick="updateDemo('demo16', 'html16', 'css16')" class="primary-btn">Update Demo</button>
+                <button class="reset-demo secondary-btn">Reset Demo</button>
+                <button class="copy-code secondary-btn">Copy Code</button>
+            </div>
+            <div class="demo" id="demo16"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="demo-handler.js"></script>
+</body>
+</html>
