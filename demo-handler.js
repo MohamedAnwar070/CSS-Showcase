@@ -6,6 +6,7 @@ class DemoHandler {
         this.initializeResizeHandles();
         this.initializeCopyButtons();
         this.initializeResetButtons();
+        this.initializeScrollButton();
     }
 
     initializeEventListeners() {
@@ -255,6 +256,32 @@ class DemoHandler {
                 this.updateDemo(demoId, htmlId, cssId);
             });
         });
+    }
+
+    initializeScrollButton() {
+        const scrollBtn = document.querySelector('.scroll-top-btn');
+        const nav = document.querySelector('.demo-nav');
+        
+        const toggleButtonVisibility = () => {
+            const showAt = nav.offsetTop + nav.offsetHeight;
+            if (window.scrollY > showAt) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        };
+
+        window.addEventListener('scroll', toggleButtonVisibility);
+        
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initial check
+        toggleButtonVisibility();
     }
 
     getOriginalHTML(demoId) {
