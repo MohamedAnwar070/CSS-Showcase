@@ -35,3 +35,9 @@ It acts as a live playground and reference for understanding how these features 
 git clone https://github.com/MohamedAnwar070/CSS-Showcase
 cd CSS-Showcase
 open index.html
+
+---
+
+## 📬 Contact
+- **Email**: [mohamedanwar.asraf@gmail.com](mailto:mohamedanwar.asraf@gmail.com)
+- **GitHub**: [@MohamedAnwar070](https://github.com/MohamedAnwar070)
