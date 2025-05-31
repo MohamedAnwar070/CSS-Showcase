@@ -35,6 +35,7 @@ It acts as a live playground and reference for understanding how these features 
 git clone https://github.com/MohamedAnwar070/CSS-Showcase
 cd CSS-Showcase
 open index.html
+```
 
 ---
 
